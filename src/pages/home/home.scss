@@ -1,0 +1,32 @@
+page-home {
+ 
+    ion-content{
+        background: linear-gradient(to top, #87ceeb 0%, #000 90%);
+    }
+
+    .toolbar-ios ion-title{
+        background: #000;
+    }
+
+    .toolbar-title-ios{
+        font-size: 2rem;
+    }
+    ion-header{
+        top: 27px;
+    }
+
+    .toolbar-title.toolbar-title-ios{
+        font-family: sans-serif;
+        color:#fff;
+    }
+
+    p{
+        color: aquamarine;
+        font-family: "times new roman";
+	    font-size: 30px;
+    }
+
+    .block-quote{
+        margin-top: 125px;
+    }
+}
