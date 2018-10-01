@@ -1,16 +1,56 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Message of the Day
+      Quiz
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <div class="block-quote">
-    <p>{{quote[0].message}}</p>
-    <p>{{quote[0].author}}</p>
+  <div class="content">
+
+  <div class="quiz-welcome" *ngIf="isAtWelcome">
+    <p>Welcome to Quiz of General Science</p>
+    <input type="button" id="startQuiz" value="start Quiz" (click)="doneAndProgress()">
   </div>
+
+  <div class="quiz-question" *ngIf="isAtQuiz">
+    <span class="question">{{questionSet[0].question}}</span>
+
+    <ul>
+      <li>{{questionSet[0].choices.a.displayOption}}</li>
+      <li>{{questionSet[0].choices.b.displayOption}}</li>
+      <li>{{questionSet[0].choices.c.displayOption}}</li>
+      <li>{{questionSet[0].choices.d.displayOption}}</li>
+      <span>Answer : </span>
+    </ul>
+
+    <input type="button" id="endQuiz" value="Done" (click)="doneAndProgress()">
+
+  </div>
+
+  <div class="quiz-end" *ngIf="isFinishedAtQuiz">
+    <span class="message">
+      You got a score :
+      <p>100</p>
+    </span>
+
+    <div class="quiz-checking"></div>
+    <span>
+      <p>What what what what what what what?</p>
+      <p>answer : ???</p>
+    </span>
+
+    <input type="button" id="backToStart" value="Go for another Quiz!" (click)="doneAndProgress()">
+
+
+  </div>
+
+</div>
+
+
+
+
 
 </ion-content>

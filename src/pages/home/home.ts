@@ -10,64 +10,121 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
   }
 
-  quotesArr: Array<any> = [
+  isAtWelcome = true;
+  isAtQuiz = false;
+  isFinishedAtQuiz = false;
+
+  questionSheet: Array<any> = [
     {
-      message: 'The way get Started is to quit talking and begin doing.',
-      author: 'Walt Disney'
-    },
-    {
-      message: 'The pessimist sees difficulty in every opportunity. The Optimist sees the opportunity in every difficulty.',
-      author: 'Winston Churchill'
-    },
-    {
-      message: 'Do not let Yesterday take up to much of today.',
-      author: 'Will Rogers'
-    },
-    {
-      message: 'You learn more failure than from success. Do not let it stop you, failure builds character.',
-      author: 'Unknown'
-    },
-    {
-      message: 'It is not whether you get knocked down, it is whether you get up.',
-      author: 'Vince Lombardi'
-    },
-    {
-      message: 'If you are working on something that you really care about, you do not have to be pushed. The vision pulls you.',
-      author: 'Steve Jobs'
+      question: 'What is the what of all whats? 1',
+      choices: {
+        a: {
+          displayOption: 'A',
+          answer: true
+        },
+        b: {
+          displayOption: 'B'
+        },
+        c: {
+          displayOption: 'C'
+        },
+        d: {
+          displayOption: 'D'
+        }
+      }
     },
 
-  ]
+    {
+      question: 'What is the what of all whats? 2',
+      choices: {
+        a: {
+          displayOption: 'A',
+          answer: true
+        },
+        b: {
+          displayOption: 'B'
+        },
+        c: {
+          displayOption: 'C'
+        },
+        d: {
+          displayOption: 'D'
+        }
+      }
+    },
 
-  quote: Array<object> = [{}];
+    {
+      question: 'What is the what of all whats? 3',
+      choices: {
+        a: {
+          displayOption: 'A',
+          answer: true
+        },
+        b: {
+          displayOption: 'B'
+        },
+        c: {
+          displayOption: 'C'
+        },
+        d: {
+          displayOption: 'D'
+        }
+      }
+    },
+
+    {
+      question: 'What is the what of all whats? 4',
+      choices: {
+        a: {
+          displayOption: 'A',
+          answer: true
+        },
+        b: {
+          displayOption: 'B'
+        },
+        c: {
+          displayOption: 'C'
+        },
+        d: {
+          displayOption: 'D'
+        }
+      }
+    },
+  ];
+
+  questionSet: Array<any> = [{}];
+
+
+
 
   ngOnInit() {
-    this.changeQuote();
+    this.getQuestionSheet();
+    console.log(this.questionSet[0]);
   }
 
-  changeQuote() {
-    let quotes = [...this.quotesArr];
-    this.getQuotes(quotes);
-    setInterval(() => {
-
-      quotes = this.checkQuotesIfEmpty(quotes) ? [...this.quotesArr] : quotes;
-      this.getQuotes(quotes);
-
-    }, 3000)
+  doneAndProgress() {
+    if (this.isAtWelcome) {
+      this.isAtWelcome = !this.isAtWelcome;
+      this.isAtQuiz = !this.isAtQuiz;
+    }
+    else if (this.isAtQuiz) {
+      this.isAtQuiz = !this.isAtQuiz;
+      this.isFinishedAtQuiz = !this.isFinishedAtQuiz;
+    }
+    else if (this.isFinishedAtQuiz) {
+      this.isFinishedAtQuiz = !this.isFinishedAtQuiz;
+      this.isAtWelcome = !this.isAtWelcome;
+    }
 
   }
 
-  checkQuotesIfEmpty(quotes: any) {
-    return quotes.length == 0 ? true : false;
-  };
-
-  getQuotes(quotes: any) {
-    var rng = (Math.floor((Math.random() * quotes.length) + 0));
-    this.quote = quotes.splice(this.isDuplicate(quotes, rng), 1);
+  getQuestionSheet() {
+    this.questionSet = [... this.questionSheet];
   }
 
-  isDuplicate(quotes: any, rng: number) {
-    var newRng = rng >= quotes.length - 1 ? rng - 1 : rng + 1;
-    return this.quote['author'] == quotes[rng].author ? newRng : rng;
+  getCorrectAnswer(question) {
+
+
   }
 
 }
