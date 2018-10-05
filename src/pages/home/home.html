@@ -9,45 +9,86 @@
 <ion-content padding>
 
   <div class="content">
+    <!--Mao ang pinakauna, sa ngalan palang sa variable isAtWelcome,
+      og kana siya usa ka variable nga boolean just refer home.ts -->
+    <div class="quiz-welcome" *ngIf="isAtWelcome">
+      <p>Welcome to Quiz of General Science</p>
+      <input type="button" id="startQuiz" value="start Quiz" (click)="doneAndProgress()">
+    </div>
 
-  <div class="quiz-welcome" *ngIf="isAtWelcome">
-    <p>Welcome to Quiz of General Science</p>
-    <input type="button" id="startQuiz" value="start Quiz" (click)="doneAndProgress()">
+    <!-- dinhi mao ang kung mag sugod na ang quiz -->
+    <div class="quiz-question" *ngIf="isAtQuiz">
+      <!-- display sa questions, refer sa questionSheet sa structure -->
+      <span class="question">{{questionSheet[questionSet[[quizNumber]]].question}}</span>
+      <!-- display sa choices, e loop man unta nako, kapoy man haha -->
+      <ul class="choices" style="list-style-type:none">
+        <li>
+          <input type="radio" value="a" [(ngModel)]='quizUserAnswer'>
+          <span>
+            {{questionSheet[questionSet[[quizNumber]]].choices.a.displayOption}}
+          </span>
+
+        </li>
+
+        <li>
+          <input type="radio" value="b" [(ngModel)]='quizUserAnswer'>
+          <span>
+            {{questionSheet[questionSet[[quizNumber]]].choices.b.displayOption}}
+          </span>
+
+        </li>
+
+        <li>
+          <input type="radio" value="c" [(ngModel)]='quizUserAnswer'>
+          <span>
+            {{questionSheet[questionSet[[quizNumber]]].choices.c.displayOption}}
+          </span>
+
+        </li>
+
+        <li>
+          <input type="radio" value="d" [(ngModel)]='quizUserAnswer'>
+          <span>
+            {{questionSheet[questionSet[[quizNumber]]].choices.d.displayOption}}
+          </span>
+
+        </li>
+
+        <span hidden>Answer : {{getCorrectAnswer(questionSet[[quizNumber]])}} </span>
+      </ul>
+      <!-- dani kung ang questionNumber or quizNumber ge abot na og 10
+      which is maximum mo lahi nga dayon ang mo display, kato na dayon naay done -->
+      <input type="button" id="endQuiz" value="Answer" (click)="quizProgress()" *ngIf="quizNumber!=9">
+      <input type="button" id="endQuiz" value="Done" (click)="doneAndProgress()" *ngIf="quizNumber==9">
+
+    </div>
+
+    <!-- dinhi sa nahuman na ang quiz  -->
+    <div class="quiz-end" *ngIf="isFinishedAtQuiz">
+      <!-- pakita ang score sa user -->
+      <span class="message">
+        You got a score :
+        <p>{{userScore}}</p>
+      </span>
+      <input type="button" id="backToStart" value="Go for another Quiz!" (click)="doneAndProgress()">
+      <!-- dani ang mga answer sa questions -->
+      <div class="quiz-checking">
+        <span>
+          <p>Answers :)</p>
+        </span>
+        <div class="quiz-answers" *ngFor='let questions of questionSet; index as i'>
+          <span >
+            <p>{{questionSheet[questions].question}}</p>
+            <p>answer : {{getCorrectAnswer(questions)}}</p>
+          </span>
+        </div>
+      </div>
+
+
+
+    </div>
+
   </div>
-
-  <div class="quiz-question" *ngIf="isAtQuiz">
-    <span class="question">{{questionSet[0].question}}</span>
-
-    <ul>
-      <li>{{questionSet[0].choices.a.displayOption}}</li>
-      <li>{{questionSet[0].choices.b.displayOption}}</li>
-      <li>{{questionSet[0].choices.c.displayOption}}</li>
-      <li>{{questionSet[0].choices.d.displayOption}}</li>
-      <span>Answer : </span>
-    </ul>
-
-    <input type="button" id="endQuiz" value="Done" (click)="doneAndProgress()">
-
-  </div>
-
-  <div class="quiz-end" *ngIf="isFinishedAtQuiz">
-    <span class="message">
-      You got a score :
-      <p>100</p>
-    </span>
-
-    <div class="quiz-checking"></div>
-    <span>
-      <p>What what what what what what what?</p>
-      <p>answer : ???</p>
-    </span>
-
-    <input type="button" id="backToStart" value="Go for another Quiz!" (click)="doneAndProgress()">
-
-
-  </div>
-
-</div>
 
 
 
