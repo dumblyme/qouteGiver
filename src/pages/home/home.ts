@@ -52,7 +52,7 @@ export class HomePage {
       quotes = this.checkQuotesIfEmpty(quotes) ? [...this.quotesArr] : quotes;
       this.getQuotes(quotes);
 
-    }, 3000)
+    }, 10000)
 
   }
 
@@ -69,5 +69,24 @@ export class HomePage {
     var newRng = rng >= quotes.length - 1 ? rng - 1 : rng + 1;
     return this.quote['author'] == quotes[rng].author ? newRng : rng;
   }
+
+  copyText(text: string) {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = text + " \n \n-" + this.quote[0]['author'];
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+    alert('the Quote message has been copied to clipboard');
+  }
+
+
+
 
 }
