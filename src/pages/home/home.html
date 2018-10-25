@@ -11,6 +11,7 @@
   <div class="content">
     <!--Mao ang pinakauna, sa ngalan palang sa variable isAtWelcome,
       og kana siya usa ka variable nga boolean just refer home.ts -->
+
     <div class="quiz-welcome" *ngIf="isAtWelcome">
       <p>Welcome to Quiz of General Science</p>
       <input type="button" id="startQuiz" value="start Quiz" (click)="doneAndProgress()">
@@ -68,7 +69,8 @@
       <!-- pakita ang score sa user -->
       <span class="message">
         You got a score :
-        <p>{{userScore}}</p>
+        <p>{{userScore*10}}%</p>
+        <p>{{getUserScoreMessage(userScore)}}</p>
       </span>
       <input type="button" id="backToStart" value="Go for another Quiz!" (click)="doneAndProgress()">
       <!-- dani ang mga answer sa questions -->

@@ -534,6 +534,24 @@ export class HomePage {
 
   }
 
+  getUserScoreMessage(userScore) {
+    let scorepercentage = userScore * 10;
+
+    if (scorepercentage>=100) {
+      return 'Awesome!, you can go to next level';
+    } 
+    else if (scorepercentage>=75) {
+      return 'Not bad at all!';      
+    } 
+    else if (scorepercentage>=50) {
+      return 'You need to review more.';      
+    } 
+    else if (scorepercentage>=25) {
+      return 'Study hard';      
+    }
+
+  }
+
   getQuestionSheet() {
     this.questionSet = this.getQuestionSet();
   }
