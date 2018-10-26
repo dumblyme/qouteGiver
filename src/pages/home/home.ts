@@ -546,8 +546,8 @@ export class HomePage {
     else if (scorepercentage>=50) {
       return 'You need to review more.';      
     } 
-    else if (scorepercentage>=25) {
-      return 'Study hard';      
+    else {
+      return 'Study hard';  
     }
 
   }
